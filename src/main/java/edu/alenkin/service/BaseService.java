@@ -2,6 +2,7 @@ package edu.alenkin.service;
 
 import edu.alenkin.model.BaseEntity;
 import edu.alenkin.repository.Repository;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 
 @Slf4j
+@NoArgsConstructor
 public abstract class BaseService<ID extends Serializable, T extends BaseEntity> implements Service<ID, T> {
 
     protected Repository<ID, T> repository;
@@ -49,7 +51,7 @@ public abstract class BaseService<ID extends Serializable, T extends BaseEntity>
     @Override
     public T create(T t) {
         log.info("Create new {}", t);
-        if (notNullable(t.getId())) {
+        if (notNullable(t)) {
             return repository.create(t);
         }
         return null;

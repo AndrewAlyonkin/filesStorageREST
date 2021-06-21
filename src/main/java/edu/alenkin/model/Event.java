@@ -42,4 +42,7 @@ public class Event extends BaseEntity {
         this.storedFile = file;
         this.user = user;
     }
+    public Event(Timestamp downloadDateTime, StoredFile file, User user) {
+       this(null, downloadDateTime, file, user);
+    }
 }

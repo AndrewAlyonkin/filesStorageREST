@@ -8,4 +8,5 @@ import edu.alenkin.model.User;
  */
 public interface UserService extends Service<Long, User> {
     User getWithFilesAndEvents(Long userId);
+
 }
