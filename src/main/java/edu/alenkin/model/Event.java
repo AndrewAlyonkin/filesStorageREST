@@ -16,15 +16,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 
 @Entity
 @Table(name = "events")
 public class Event extends BaseEntity {
     @OneToOne
+    @JoinColumn(name = "file_id")
     private StoredFile storedFile;
 
     @CreationTimestamp
@@ -36,5 +34,12 @@ public class Event extends BaseEntity {
 
     public Event(StoredFile storedFile) {
         this.storedFile = storedFile;
+    }
+
+    public Event(Long eventId, Timestamp downloadDateTime, StoredFile file, User user) {
+        super(eventId);
+        this.downloadDateTime = downloadDateTime;
+        this.storedFile = file;
+        this.user = user;
     }
 }

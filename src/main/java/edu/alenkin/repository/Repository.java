@@ -14,6 +14,8 @@ import java.util.List;
 public interface Repository<ID extends Serializable, T extends BaseEntity> {
     T get(ID Tid);
 
+    T get(ID Tid, ID UserId);
+
     List<T> getAll();
 
     void delete(T t);

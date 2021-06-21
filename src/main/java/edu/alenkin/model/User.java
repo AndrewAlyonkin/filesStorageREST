@@ -16,16 +16,13 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {
 
-    @Column(name = "userName", columnDefinition = "VARCHAR")
+    @Column(name = "name", columnDefinition = "VARCHAR")
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
@@ -34,5 +31,35 @@ public class User extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Event> events;
+
+    public User(String name, Long id) {
+        super(id);
+        this.name = name;
+    }
+    public User(String name) {
+        this(name, null);
+    }
+
+    public User(Long id, String name, List<StoredFile> storedFiles, List<Event> events) {
+        super(id);
+        this.name = name;
+        this.storedFiles = storedFiles;
+        this.events = events;
+    }
+
+    public User(User user ) {
+        this(user.getId(), user.getName(), user.getStoredFiles(), user.getEvents());
+    }
+
+    public void addEvent(Event event) {
+        if (!events.contains(event)) {
+            this.events.add(event);
+        }
+    }
+
+    public void addFile(StoredFile file) {
+        this.storedFiles.add(file);
+    }
+
 
 }

@@ -12,10 +12,7 @@ import javax.persistence.*;
  */
 @Getter
 @Setter
-@ToString
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 
 @Entity
 @Table(name = "files")
@@ -26,9 +23,24 @@ public class StoredFile extends BaseEntity {
     @Column(name = "size", columnDefinition = "BIGINT")
     private long size;
 
-    @OneToOne(mappedBy = "file")
+    @OneToOne(mappedBy = "storedFile")
     private Event event;
 
     @ManyToOne
     private User user;
+
+    public StoredFile(Long id, String fileURI, long size, Event event, User user) {
+        super(id);
+        this.fileURI = fileURI;
+        this.size = size;
+        this.event = event;
+        this.user = user;
+    }
+    public StoredFile(String fileURI, long size, User user) {
+        this(null, fileURI, size, null, user);
+    }
+
+    public StoredFile(Long id, String fileURI, long size, User user) {
+        this(id, fileURI, size, null, user);
+    }
 }

@@ -20,10 +20,20 @@
     <hibernate.version>5.5.2.Final</hibernate.version>
     <lombok.version>1.18.20</lombok.version>
     <gson.version>2.8.5</gson.version>
+    <flyway.version>7.10.0</flyway.version>
+    <postgres.version>42.2.20</postgres.version>
+    <assertj.version>3.19.0</assertj.version>
 
   </properties>
 
   <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${postgres.version}</version>
+    </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
     <dependency>
@@ -54,6 +64,21 @@
       <version>${gson.version}</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.8.4</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -61,12 +86,33 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
-    <finalName>filesStorageREST</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+
+        <!--  To migrate database run command "  mvn clean flyway:migrate  " in the terminal  -->
+        <!--  To drop schema run command "  mvn flyway:clean  " in the terminal  -->
+        <plugin>
+          <groupId>org.flywaydb</groupId>
+          <artifactId>flyway-maven-plugin</artifactId>
+          <version>7.10.0</version>
+          <configuration>
+            <driver>org.postgresql.Driver</driver>
+            <url>jdbc:postgresql://localhost:5432/filesStorage?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8</url>
+            <user>postgres</user>
+            <password>postgres</password>
+          </configuration>
+        </plugin>
+
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
@@ -90,8 +136,8 @@
             </path>
           </annotationProcessorPaths>
           </configuration>
-
         </plugin>
+
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
@@ -115,8 +161,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <source>9</source>
+          <target>9</target>
         </configuration>
       </plugin>
     </plugins>

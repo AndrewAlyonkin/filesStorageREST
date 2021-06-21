@@ -1,9 +1,6 @@
 package edu.alenkin.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,11 +13,10 @@ import javax.persistence.MappedSuperclass;
  *
  * The base super entity with property ID
  */
-@ToString
 @Getter
 @Setter
 @NoArgsConstructor
-
+@AllArgsConstructor
 @MappedSuperclass
 public abstract class BaseEntity {
     @Id
