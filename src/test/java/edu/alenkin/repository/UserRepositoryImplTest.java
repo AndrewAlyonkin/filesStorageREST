@@ -1,12 +1,13 @@
 package edu.alenkin.repository;
 
+import edu.alenkin.TestData;
 import edu.alenkin.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
-import static edu.alenkin.repository.RepositoryTestData.*;
+import static edu.alenkin.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -45,7 +46,7 @@ public class UserRepositoryImplTest extends RepositoryTest {
 
     @Test
     public void createTest() {
-        User newUser = RepositoryTestData.newUser();
+        User newUser = TestData.newUser();
         Long newId = repo.create(newUser).getId();
         newUser.setId(newId);
         assertThat(repo.get(newId)).usingRecursiveComparison().ignoringFields("events", "storedFiles").isEqualTo(newUser);

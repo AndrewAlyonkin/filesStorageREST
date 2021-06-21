@@ -1,16 +1,19 @@
-package edu.alenkin.repository;
+package edu.alenkin;
 
 import edu.alenkin.model.Event;
 import edu.alenkin.model.StoredFile;
 import edu.alenkin.model.User;
+import edu.alenkin.util.JsonConverter;
+import org.junit.Test;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author Alenkin Andrew
  * oxqq@ya.ru
  */
-public class RepositoryTestData {
+public class TestData {
     private final static Long startSeq = 10000L;
     public final static Long chuck_id = startSeq + 0;
     public final static Long lee_id = startSeq + 1;
@@ -48,5 +51,18 @@ public class RepositoryTestData {
 
     public static Event newEvent() {
         return new Event(null, event12_ts, leFile2, LEE);
+    }
+
+
+    @Test
+    public void print() {
+        JsonConverter<User> converter= new JsonConverter(User.class);
+        User newUser =  new User(CHUCK);
+        newUser.setStoredFiles(List.of(chFile1, chFile2));
+        newUser.setEvents(List.of(chEvent));
+        System.out.println(converter.toJson(newUser));
+        System.out.println(converter.toJson(List.of(newUser, newUser)));
+
+
     }
  }

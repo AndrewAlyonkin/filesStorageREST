@@ -16,7 +16,6 @@ public class EventServiceImpl extends BaseService<Long, Event> implements EventS
         super(repository);
     }
 
-
     @Override
     public List<Event> getAllForUser(Long userId) {
         return ((EventRepository) repository).getAllForUser(userId);

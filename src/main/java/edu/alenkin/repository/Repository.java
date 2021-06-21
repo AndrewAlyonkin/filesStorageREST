@@ -21,4 +21,6 @@ public interface Repository<ID extends Serializable, T extends BaseEntity> {
     void delete(T t);
 
     T create(T t);
+
+    void delete(ID id);
 }

@@ -36,6 +36,9 @@ public class StoredFile extends BaseEntity {
         this.event = event;
         this.user = user;
     }
+    public StoredFile(StoredFile file) {
+        this(file.getId(), file.getFileURI(), file.getSize(), file.getEvent(), file.getUser());
+    }
     public StoredFile(String fileURI, long size, User user) {
         this(null, fileURI, size, null, user);
     }

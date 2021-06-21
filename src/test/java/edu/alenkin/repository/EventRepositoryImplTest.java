@@ -1,12 +1,13 @@
 package edu.alenkin.repository;
 
+import edu.alenkin.TestData;
 import edu.alenkin.model.Event;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
-import static edu.alenkin.repository.RepositoryTestData.*;
+import static edu.alenkin.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -52,8 +53,14 @@ public class EventRepositoryImplTest extends RepositoryTest {
     }
 
     @Test
+    public void deleteByIdTest() {
+        repo.delete(event11_id);
+        Assert.assertNull(repo.get(event11_id, chuck_id));
+    }
+
+    @Test
     public void createTest() {
-        Event newEvent = RepositoryTestData.newEvent();
+        Event newEvent = TestData.newEvent();
         Long newId = repo.create(newEvent).getId();
         newEvent.setId(newId);
         assertThat(repo.get(newId)).usingRecursiveComparison()

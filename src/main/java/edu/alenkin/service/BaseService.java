@@ -17,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @NoArgsConstructor
-public abstract class BaseService<ID extends Serializable, T extends BaseEntity> implements Service<ID, T> {
+public abstract class BaseService<ID extends Number, T extends BaseEntity> implements Service<ID, T> {
 
     protected Repository<ID, T> repository;
 
@@ -62,6 +62,14 @@ public abstract class BaseService<ID extends Serializable, T extends BaseEntity>
         log.info("Delete {}", t);
         if (notNullable(repository.get((ID) t.getId()))) {
             repository.delete(t);
+        }
+    }
+
+    @Override
+    public void delete(ID id) {
+        log.info("Delete {}", id);
+        if (notNullable(id)) {
+            repository.delete(id);
         }
     }
 

@@ -56,6 +56,18 @@ public abstract class BaseRepository<ID extends Serializable, T extends BaseEnti
     }
 
     @Override
+    public void delete(ID id) {
+        log.info("Delete {}", id);
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.createQuery("delete from " + clazz.getSimpleName() + " where id=:id")
+                .setParameter("id", id)
+                .executeUpdate();
+        transaction.commit();
+        closeSession();
+    }
+
+    @Override
     public T create(T t) {
         T entity = t;
         Session session = getSession();

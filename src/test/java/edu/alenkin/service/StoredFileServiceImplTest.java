@@ -102,5 +102,11 @@ public class StoredFileServiceImplTest {
         assertEquals(testFile, fileCaptor.getValue());
         assertEquals(testId, idCaptor.getValue());
     }
+    @Test
+    public void deleteByIdTest() {
+        service.delete(testId);
+        Mockito.verify(repoMock).delete(idCaptor.capture());
+        assertEquals(testId, idCaptor.getValue());
+    }
 
 }

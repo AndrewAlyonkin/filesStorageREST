@@ -35,6 +35,9 @@ public class Event extends BaseEntity {
     public Event(StoredFile storedFile) {
         this.storedFile = storedFile;
     }
+    public Event(Event event){
+        this(event.getId(), event.getDownloadDateTime(), event.getStoredFile(), event.getUser());
+    }
 
     public Event(Long eventId, Timestamp downloadDateTime, StoredFile file, User user) {
         super(eventId);

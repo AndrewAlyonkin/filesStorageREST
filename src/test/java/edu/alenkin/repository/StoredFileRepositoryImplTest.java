@@ -1,18 +1,13 @@
 package edu.alenkin.repository;
 
+import edu.alenkin.TestData;
 import edu.alenkin.model.StoredFile;
-import edu.alenkin.model.User;
-import edu.alenkin.service.StoredFileService;
-import edu.alenkin.service.StoredFileServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
-import static edu.alenkin.repository.RepositoryTestData.*;
-import static edu.alenkin.util.HibernateUtil.closeSession;
-import static edu.alenkin.util.HibernateUtil.getSession;
-import static org.junit.Assert.*;
+import static edu.alenkin.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -58,8 +53,14 @@ public class StoredFileRepositoryImplTest extends RepositoryTest {
     }
 
     @Test
+    public void deleteByIdTest() {
+        repo.delete(file11_id);
+        Assert.assertNull(repo.get(file11_id, chuck_id));
+    }
+
+    @Test
     public void createTest() {
-        StoredFile newFile = RepositoryTestData.newFile();
+        StoredFile newFile = TestData.newFile();
         Long newId = repo.create(newFile).getId();
         newFile.setId(newId);
         assertThat(repo.get(newId)).usingRecursiveComparison().ignoringFields("event", "user").isEqualTo(newFile);
