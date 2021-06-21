@@ -22,12 +22,20 @@ public abstract class JsonBaseController<ID extends Number, T extends BaseEntity
 
     public String get(ID id) {
         T entity = service.get(id);
-        return jsonConverter.toJson(entity);
+        try {
+            return jsonConverter.toJson(entity);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public String getAll() {
         List<T> entities = service.getAll();
-        return jsonConverter.toJson(entities);
+        try {
+            return jsonConverter.toJson(entities);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void delete(String json) {
@@ -40,12 +48,30 @@ public abstract class JsonBaseController<ID extends Number, T extends BaseEntity
     }
 
     public T create(String entityJson) {
-        T entity = jsonConverter.fromJson(entityJson);
-        return service.create(entity);
+        try {
+            T entity = jsonConverter.fromJson(entityJson);
+            return service.create(entity);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<T> createList(String entityJson) {
+        try {
+            List<T> entities = jsonConverter.fromJsonList(entityJson);
+            entities.forEach(service::create);
+            return entities;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public T update(String json) {
-        T entity = jsonConverter.fromJson(json);
-        return service.update(entity);
+        try {
+            T entity = jsonConverter.fromJson(json);
+            return service.update(entity);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

@@ -79,9 +79,12 @@ public abstract class JsonBaseControllerTest<ID extends Number, T extends BaseEn
         Mockito.when(serviceMock.create(Mockito.any())).thenReturn(entity);
         assertThat(controller.create(entityJson)).usingRecursiveComparison().isEqualTo(entity);
     }
+
     @Test
     public void update() {
         Mockito.when(serviceMock.create(Mockito.any())).thenReturn(entity);
         assertEquals(entity, controller.create(entityJson));
     }
+
+
 }

@@ -52,17 +52,4 @@ public class TestData {
     public static Event newEvent() {
         return new Event(null, event12_ts, leFile2, LEE);
     }
-
-
-    @Test
-    public void print() {
-        JsonConverter<User> converter= new JsonConverter(User.class);
-        User newUser =  new User(CHUCK);
-        newUser.setStoredFiles(List.of(chFile1, chFile2));
-        newUser.setEvents(List.of(chEvent));
-        System.out.println(converter.toJson(newUser));
-        System.out.println(converter.toJson(List.of(newUser, newUser)));
-
-
-    }
  }

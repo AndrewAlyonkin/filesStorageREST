@@ -4,4 +4,15 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>rest</servlet-name>
+    <servlet-class>edu.alenkin.web.RequestDispatcher</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rest</servlet-name>
+    <url-pattern>/rest</url-pattern>
+  </servlet-mapping>
+
 </web-app>

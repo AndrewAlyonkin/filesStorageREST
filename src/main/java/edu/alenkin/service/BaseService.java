@@ -51,6 +51,9 @@ public abstract class BaseService<ID extends Number, T extends BaseEntity> imple
     @Override
     public T create(T t) {
         log.info("Create new {}", t);
+        if (t.getId() != null) {
+            return null;
+        }
         if (notNullable(t)) {
             return repository.create(t);
         }

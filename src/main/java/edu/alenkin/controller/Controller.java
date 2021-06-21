@@ -22,4 +22,5 @@ public interface Controller<R, ID extends Number, T extends BaseEntity> {
     T create(String entityJson);
 
     T update(R t);
+     List<T> createList(String entityJson);
 }
