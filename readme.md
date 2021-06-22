@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.com/AndrewAlyonkin/filesStorageREST.svg?branch=master)](https://travis-ci.com/AndrewAlyonkin/filesStorageREST)
 
+*Для удаленной отладки:*
+>heroku logs --tail       
+>--app filesrest
+
 RESTful приложение, которое взаимодействует с файловым хранилищем и предоставляет
 возможность получать доступ к файлам и истории загрузок и осуществлять над ними
 все CRUD операции.  
