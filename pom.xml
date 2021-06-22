@@ -7,6 +7,7 @@
   <groupId>edu.alenkin</groupId>
   <artifactId>restApp</artifactId>
   <version>1.0</version>
+  <packaging>war</packaging>
 
   <name>restApp</name>
   <url>restApp</url>
@@ -108,6 +109,20 @@
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+
+      <!--Heroku-->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.0.1</version>
+          <executions>
+            <execution>
+              <id>copy-dependencies</id>
+              <phase>package</phase>
+              <goals><goal>copy-dependencies</goal></goals>
+            </execution>
+          </executions>
+        </plugin>
 
         <!--  To migrate database run command "  mvn clean flyway:migrate  " in the terminal  -->
         <!--  To drop schema run command "  mvn flyway:clean  " in the terminal  -->
