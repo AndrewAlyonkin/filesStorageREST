@@ -1,0 +1,17 @@
+language: java
+
+sudo: false
+
+env:
+  global:
+    - CODECOV_TOKEN=:f190df12-679a-4e01-975d-9b58912bb528
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    recipients:
+      - oxqq@ya.ru
+    on_success: never
+    on_failure: always

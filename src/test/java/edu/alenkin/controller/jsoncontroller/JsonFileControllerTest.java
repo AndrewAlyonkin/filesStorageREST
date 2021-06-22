@@ -1,14 +1,25 @@
 package edu.alenkin.controller.jsoncontroller;
 
+import edu.alenkin.controller.Controller;
+import edu.alenkin.model.Event;
 import edu.alenkin.model.StoredFile;
+import edu.alenkin.service.Service;
+import edu.alenkin.service.StoredFileServiceImpl;
+import edu.alenkin.util.JsonConverter;
+import org.junit.Test;
 
+import java.io.File;
+import java.util.List;
+
+import static edu.alenkin.TestData.chEvent;
 import static edu.alenkin.TestData.chFile1;
+import static org.junit.Assert.*;
 
 /**
  * @author Alenkin Andrew
  * oxqq@ya.ru
  */
-public class JsonFileControllerTest extends JsonBaseControllerTest<Long, StoredFile> {
+public class JsonFileControllerTest extends JsonBaseControllerTest<Long, StoredFile>{
 
     public JsonFileControllerTest() {
         super(new JsonFileController(),

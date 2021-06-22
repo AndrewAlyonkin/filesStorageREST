@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * @author Alenkin Andrew
@@ -60,12 +61,14 @@ public abstract class BaseRestController extends HttpServlet implements RestServ
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String count = req.getParameter("count");
-        String body = req.getParameter("entity");
+        String body = readBody(req);
+
         if (hasLength(count) && hasLength(body)) {
             Object entity = null;
             switch (count) {
                 case "one": {
                     entity = controller.create(body);
+                    break;
                 }
                 case "many": {
                     entity = controller.createList(body);
@@ -80,6 +83,20 @@ public abstract class BaseRestController extends HttpServlet implements RestServ
         }
     }
 
+    private String readBody(HttpServletRequest req) {
+        StringBuffer result = new StringBuffer("");
+        try (Scanner sc = new Scanner(req.getReader()))
+        {
+            while (sc.hasNextLine()) {
+                result.append(sc.nextLine());
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result.toString();
+    }
+
     /**
      * Method PUT
      * URL pattern: /"entities"/
@@ -91,7 +108,7 @@ public abstract class BaseRestController extends HttpServlet implements RestServ
      */
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String body = req.getParameter("body");
+        String body = readBody(req);
         Object entity = null;
         if (hasLength(body)) {
             entity = controller.update(body);
