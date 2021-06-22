@@ -32,6 +32,7 @@ public class RequestDispatcher extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         String path = req.getPathInfo();
+        services.getOrDefault(path, NOT_FOUND_REST).init(getServletConfig());
         services.getOrDefault(path, NOT_FOUND_REST).service(req, resp);
     }
 }
