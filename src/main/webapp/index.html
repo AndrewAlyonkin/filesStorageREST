@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Alenkin</title>
+</head>
+<html>
+<body>
+<div class="tip" markdown="1">
+<h3>RESTful приложение, которое взаимодействует с файловым хранилищем и предоставляет
+возможность получать доступ к файлам и истории загрузок и осуществлять над ними
+    все CRUD операции.</h3>
+    <br/>
+<h3>Сущности: </h3>
+
+    <ul>
+        <li>User</li>
+        <li>Event (File file)</li>
+        <li>File</li>
+        <li>User -> List[File] files + List[Events]</li>
+    </ul>
+    Технологии: Java, MySQL, Hibernate, HTTP, Servlets, Maven, Flyway. <br/>
+    Выполнено в соответствии с патерном MVC;<br/>
+    Для миграции БД используется flyway ;<br/>
+    Все слои приложения покрыты юнит тестами (junit + mockito);<br/>
+    Проект собирается через Maven;<br/>
+    Рабочее приложение развернуто на heroku.com<br/>
+    <ul>
+        <li>* Стек технологий:</li>
+        <li>* Java</li>
+        <li>* MySQL</li>
+        <li>* JDBC</li>
+        <li>* Maven</li>
+        <li>* Liquibase, FlyWay</li>
+        <li>* JUnit</li>
+        <li>* Mockito</li>
+        <li>* Travis</li>
+    </ul>
+
+    <h3> REST API: </h3>
+    <h3> Endpoints</h3>
+    <h3>/rest/users</h3>
+   <h3>Method GET - получить список всех пользователей в формате</h3>
+   <div> *[
+    {
+    "name": "Chuck Norris",
+    "storedFiles": [
+    {
+    "fileURI": "Chuck://test/testDir/testFile.pdf",
+    "size": 9000,
+    "id": 10002
+    },
+    {
+    "fileURI": "Chuck://test/testDir/testFile.pdf",
+    "size": 90000000,
+    "id": 10008
+    }
+    ],
+    "events": [
+    {
+    "storedFile": {
+    "fileURI": "Chuck://test/testDir/testFile.pdf",
+    "size": 9000,
+    "id": 10002
+    },
+    "downloadDateTime": "Jun 20, 2021, 7:10:25 PM",
+    "id": 10006
+    }
+    ],
+    "id": 10000
+    },
+    {
+    "name": "Bruce Lee",
+    "storedFiles": [
+    {
+    "fileURI": "Lee://BruceDir/virusFile.jpeg",
+    "size": 35000,
+    "id": 10005
+    },
+    {
+    "fileURI": "Lee://BruceDir/testFile.exe",
+    "size": 25000,
+    "id": 10004
+    }
+    ],
+    "events": [
+    {
+    "storedFile": {
+    "fileURI": "Lee://BruceDir/virusFile.jpeg",
+    "size": 35000,
+    "id": 10005
+    },
+    "downloadDateTime": "Jun 20, 2021, 7:10:25 PM",
+    "id": 10007
+    }
+    ],
+    "id": 10001
+    }
+    ]*
+   </div>
+
+    <h3>/rest/users?id={ }</h3>
+    <h3> Method GET c параметром id={ } -</h3>
+    /rest/users?id=10000 <br/>
+    получить информацию о пользователе в формате
+    <div>
+    {"fileURI":"Chuck://test/testDir/testFile.pdf",
+    "size":90000000,"user":{"name":"Chuck Norris","id":10000},"id":null}
+    </div>
+    <h3> Method DELETE c параметром id={ } - удалить информацию о пользователе из базы</h3>
+    <h3> Method POST - создать нового пользователя, пример тела запроса: </h3>
+    <div>
+    {"name": "POST MAN 2","storedFiles": [{"fileURI": "Chuck://test/testDir/testFile.pdf","size": 9000,"id": 10002},{"fileURI": "Chuck://test/testDir/testFile.pdf","size": 90000000,"id": 10008}],"events": [{"storedFile": {"fileURI": "Chuck://test/testDir/testFile.pdf","size": 9000,"id": 10002},"downloadDateTime": "Jun 20, 2021, 7:10:25 PM","id": 10006}],"id": null}*
+    </div>
+    <h3> Method PUT - обновить информацию о пользователе в базе</h3>
+    >/rest/files
+    <h3>Method GET - получить список всех файлов в формате</h3>
+    <div>[
+    {
+    "fileURI": "Chuck://test/testDir/testFile.pdf",
+    "size": 9000,
+    "id": 10002
+    },
+    {
+    "fileURI": "Lee://BruceDir/testFile.exe",
+    "size": 25000,
+    "id": 10004
+    },
+    {
+    "fileURI": "Lee://BruceDir/virusFile.jpeg",
+    "size": 35000,
+    "id": 10005
+    },
+    {
+    "fileURI": "Chuck://test/testDir/testFile.pdf",
+    "size": 90000000,
+    "id": 10008
+    }
+        ]</div>
+    <h3> Method POST - создать файл </h3>
+    /rest/files?id={ }
+    <h3> Method GET - получить информацию о файле, пример запроса</h3>
+    /rest/files?id=10004
+    <h3>Method DELETE - удалить информацию о файле </h3>
+    /rest/files?userId={ }
+    <h3>Method GET - получить информацию всех файлах пользователя, пример запроса</h3>
+    /rest/files?userId=10000 <br/>
+    /rest/events
+    <h3>Method GET - получить список всех событий</h3>
+    /rest/events?id={ }
+    <h3>Method GET - получить информацию о событии, пример запроса</h3>
+    /rest/events?id=10006
+    <h3>Method DELETE - удалить информацию из истории </h3>
+    /rest/events?id={ }&userId={ }
+    <h3>Method GET - получить историю пользователя, пример запроса</h3>
+    /rest/events?userId=10000
+</div>
+</body>
+</html>
