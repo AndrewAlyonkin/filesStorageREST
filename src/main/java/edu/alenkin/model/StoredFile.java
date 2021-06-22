@@ -1,13 +1,16 @@
 package edu.alenkin.model;
 
-import lombok.*;
+import com.google.gson.annotations.Expose;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 /**
  * @author Alenkin Andrew
  * oxqq@ya.ru
- *
+ * <p>
  * Contains information about stored file and it URI in storage (server file system)
  */
 @Getter
@@ -17,9 +20,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "files")
 public class StoredFile extends BaseEntity {
+    @Expose
     @Column(name = "file_uri", columnDefinition = "VARCHAR")
     private String fileURI;
 
+    @Expose
     @Column(name = "size", columnDefinition = "BIGINT")
     private long size;
 
@@ -36,9 +41,11 @@ public class StoredFile extends BaseEntity {
         this.event = event;
         this.user = user;
     }
+
     public StoredFile(StoredFile file) {
         this(file.getId(), file.getFileURI(), file.getSize(), file.getEvent(), file.getUser());
     }
+
     public StoredFile(String fileURI, long size, User user) {
         this(null, fileURI, size, null, user);
     }

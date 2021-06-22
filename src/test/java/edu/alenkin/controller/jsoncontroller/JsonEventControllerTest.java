@@ -25,10 +25,15 @@ public class JsonEventControllerTest extends JsonBaseControllerTest<Long, Event>
     public JsonEventControllerTest() {
 
         super(new JsonEventController(),
+                "{\"storedFile\":{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\",\"size\":9000}," +
+                        "\"downloadDateTime\":\"Jun 20, 2021, 7:10:25 PM\"}",
                 "{\"storedFile\":{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\",\"size\":9000," +
                         "\"user\":{\"name\":\"Chuck Norris\",\"id\":10000},\"id\":10002}," +
                         "\"downloadDateTime\":\"Jun 20, 2021, 7:10:25 PM\"," +
                         "\"user\":{\"name\":\"Chuck Norris\",\"id\":10000},\"id\":10006}",
+                "[{\"storedFile\":{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\",\"size\":9000}," +
+                        "\"downloadDateTime\":\"Jun 20, 2021, 7:10:25 PM\"},{\"storedFile\":{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\"," +
+                        "\"size\":9000},\"downloadDateTime\":\"Jun 20, 2021, 7:10:25 PM\"}]",
                 "[{\"storedFile\":{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\"," +
                         "\"size\":9000,\"user\":{\"name\":\"Chuck Norris\",\"id\":10000},\"id\":10002}," +
                         "\"downloadDateTime\":\"Jun 20, 2021, 7:10:25 PM\",\"user\":{\"name\":\"Chuck Norris\"," +
@@ -38,14 +43,4 @@ public class JsonEventControllerTest extends JsonBaseControllerTest<Long, Event>
         );
     }
 
-    @Test
-    public void print(){
-        JsonConverter<Event> converter = new JsonConverter<>(Event.class);
-        System.out.println(converter.fromJsonList("[{\"storedFile\":{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\"," +
-                "\"size\":9000,\"user\":{\"name\":\"Chuck Norris\",\"id\":10000},\"id\":10002}," +
-                "\"downloadDateTime\":\"Jun 20, 2021, 7:10:25 PM\",\"user\":{\"name\":\"Chuck Norris\"," +
-                "\"id\":10000},\"id\":10006},{\"storedFile\":{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\"," +
-                "\"size\":9000,\"user\":{\"name\":\"Chuck Norris\",\"id\":10000},\"id\":10002}," +
-                "\"downloadDateTime\":\"Jun 20, 2021, 7:10:25 PM\",\"user\":{\"name\":\"Chuck Norris\",\"id\":10000},\"id\":10006}]"));
-    }
 }

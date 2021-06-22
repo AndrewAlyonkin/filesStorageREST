@@ -2,6 +2,7 @@ package edu.alenkin.repository;
 
 import edu.alenkin.TestData;
 import edu.alenkin.model.User;
+import edu.alenkin.util.JsonConverter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -65,4 +66,5 @@ public class UserRepositoryImplTest extends RepositoryTest {
         assertThat(repo.get(chuck_id)).usingRecursiveComparison().ignoringFields("events", "storedFiles").isEqualTo(clone);
     }
 
+   
 }

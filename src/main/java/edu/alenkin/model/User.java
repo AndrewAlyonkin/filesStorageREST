@@ -1,5 +1,6 @@
 package edu.alenkin.model;
 
+import com.google.gson.annotations.Expose;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,13 +23,16 @@ import java.util.List;
 @Table(name = "users")
 public class User extends BaseEntity {
 
+    @Expose
     @Column(name = "name", columnDefinition = "VARCHAR")
     private String name;
 
+    @Expose
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<StoredFile> storedFiles;
 
+    @Expose
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Event> events;
 

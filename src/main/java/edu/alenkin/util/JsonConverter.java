@@ -1,8 +1,8 @@
 package edu.alenkin.util;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import edu.alenkin.model.BaseEntity;
 
 import java.util.List;
 
@@ -13,7 +13,10 @@ import java.util.List;
  * Util class that provides methods for converting object to JSON and back
  */
 public class JsonConverter<T> {
-    private final Gson parser = new Gson();
+    private final Gson entityToJson = new GsonBuilder()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create();
+    private final Gson fromJsonToEntity = new GsonBuilder().create();
 
     public JsonConverter(Class<T> clazz) {
         this.clazz = clazz;
@@ -22,19 +25,19 @@ public class JsonConverter<T> {
     private final Class<T> clazz;
 
     public <T> String toJson(T entity) {
-        return parser.toJson(entity);
+        return entityToJson.toJson(entity);
     }
 
     public <T> String toJson(List<T> entities) {
-        return parser.toJson(entities);
+        return entityToJson.toJson(entities);
     }
 
     public T fromJson(String json) {
-        return (T) parser.fromJson(json, clazz);
+        return (T) fromJsonToEntity.fromJson(json, clazz);
     }
 
     public <T> List<T> fromJsonList(String json) {
-        return parser.fromJson(json, new TypeToken<List<T>>() {
+        return fromJsonToEntity.fromJson(json, new TypeToken<List<T>>() {
         }.getType());
     }
 }

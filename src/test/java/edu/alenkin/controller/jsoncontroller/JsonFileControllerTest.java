@@ -1,10 +1,16 @@
 package edu.alenkin.controller.jsoncontroller;
 
 import edu.alenkin.controller.Controller;
+import edu.alenkin.model.Event;
 import edu.alenkin.model.StoredFile;
 import edu.alenkin.service.Service;
 import edu.alenkin.service.StoredFileServiceImpl;
+import edu.alenkin.util.JsonConverter;
+import org.junit.Test;
 
+import java.util.List;
+
+import static edu.alenkin.TestData.chEvent;
 import static edu.alenkin.TestData.chFile1;
 import static org.junit.Assert.*;
 
@@ -16,8 +22,11 @@ public class JsonFileControllerTest extends JsonBaseControllerTest<Long, StoredF
 
     public JsonFileControllerTest() {
         super(new JsonFileController(),
+                "{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\",\"size\":9000}",
                 "{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\"," +
                         "\"size\":9000,\"user\":{\"name\":\"Chuck Norris\",\"id\":10000},\"id\":10002}",
+                "[{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\",\"size\":9000}," +
+                        "{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\",\"size\":9000}]",
                 "[{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\",\"size\":9000," +
                         "\"user\":{\"name\":\"Chuck Norris\",\"id\":10000}," +
                         "\"id\":10002},{\"fileURI\":\"Chuck://test/testDir/testFile.pdf\"," +
@@ -28,7 +37,5 @@ public class JsonFileControllerTest extends JsonBaseControllerTest<Long, StoredF
     protected StoredFile getNew() {
         return new StoredFile(chFile1);
     }
-
-
 
 }

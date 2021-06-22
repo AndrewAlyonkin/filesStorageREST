@@ -1,5 +1,6 @@
 package edu.alenkin.model;
 
+import com.google.gson.annotations.Expose;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -21,10 +22,12 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "events")
 public class Event extends BaseEntity {
+    @Expose
     @OneToOne
     @JoinColumn(name = "file_id")
     private StoredFile storedFile;
 
+    @Expose
     @CreationTimestamp
     @Column(name = "download_time", columnDefinition = "TIMESTAMP")
     private Timestamp downloadDateTime;
