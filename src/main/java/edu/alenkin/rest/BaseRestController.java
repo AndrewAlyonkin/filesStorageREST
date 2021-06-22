@@ -36,8 +36,14 @@ public abstract class BaseRestController extends HttpServlet implements RestServ
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             }
         } else {
-            responseData = controller.getAll();
+            try {
+            responseData = hasLength(userId)
+            ? controller.getAll(Long.parseLong(userId))
+            : controller.getAll();
             resp.setStatus(HttpServletResponse.SC_OK);
+            } catch (Exception e) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            }
         }
         resp.getOutputStream().print(responseData);
     }

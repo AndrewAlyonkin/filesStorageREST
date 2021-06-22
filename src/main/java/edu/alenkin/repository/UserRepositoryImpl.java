@@ -5,6 +5,7 @@ import edu.alenkin.util.HibernateUtil;
 import net.bytebuddy.implementation.bytecode.Throw;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Alenkin Andrew
@@ -32,6 +33,11 @@ public class UserRepositoryImpl extends BaseRepository<Long, User> implements Us
     @Override
     public User get(Long Tid, Long UserId) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    protected List<User> getAllForUser(Long id) {
+        return getAll();
     }
 
     @Override

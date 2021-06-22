@@ -46,6 +46,12 @@ public abstract class BaseRepository<ID extends Serializable, T extends BaseEnti
     }
 
     @Override
+    public List<T> getAll(Long id) {
+        return getAllForUser(id);
+    }
+    protected abstract List<T> getAllForUser(Long id);
+
+    @Override
     public void delete(T t) {
         log.info("Delete {}", t);
         Session session = getSession();

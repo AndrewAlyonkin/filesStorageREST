@@ -38,6 +38,15 @@ public abstract class JsonBaseController<ID extends Number, T extends BaseEntity
         }
     }
 
+    public String getAll(Long userId) {
+        List<T> entities = service.getAll(userId);
+        try {
+            return jsonConverter.toJson(entities);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public void delete(String json) {
         T entity = jsonConverter.fromJson(json);
         service.delete(entity);

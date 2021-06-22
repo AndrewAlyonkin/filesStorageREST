@@ -41,6 +41,12 @@ public abstract class BaseService<ID extends Number, T extends BaseEntity> imple
     }
 
     @Override
+    public List<T> getAll(Long id) {
+        log.info("Get all");
+        return repository.getAll(id);
+    }
+
+    @Override
     public T update(T t) {
         if (notNullable(t.getId())) {
             return repository.create(t);

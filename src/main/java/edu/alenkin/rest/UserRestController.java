@@ -15,4 +15,6 @@ public class UserRestController extends BaseRestController {
         this.controller = new JsonUserController();
         super.init();
     }
+
+
 }

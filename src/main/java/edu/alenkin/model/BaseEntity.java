@@ -1,5 +1,6 @@
 package edu.alenkin.model;
 
+import com.google.gson.annotations.Expose;
 import lombok.*;
 
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ import javax.persistence.MappedSuperclass;
 @AllArgsConstructor
 @MappedSuperclass
 public abstract class BaseEntity {
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

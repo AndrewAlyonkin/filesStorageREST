@@ -15,4 +15,5 @@ public interface Service <ID extends Number, T extends BaseEntity>{
     T create(T t);
     void delete(T t);
     void delete(ID id);
+    List<T> getAll(Long id);
 }

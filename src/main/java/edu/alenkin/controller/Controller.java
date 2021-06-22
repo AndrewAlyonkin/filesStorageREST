@@ -15,6 +15,8 @@ public interface Controller<R, ID extends Number, T extends BaseEntity> {
 
    R getAll();
 
+    R getAll(ID id);
+
    void delete(R t);
 
    void delete(ID id);
