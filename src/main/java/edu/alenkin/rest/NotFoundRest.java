@@ -13,6 +13,6 @@ import java.io.IOException;
 public class NotFoundRest extends HttpServlet implements RestService {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+        resp.sendError(HttpServletResponse.SC_BAD_GATEWAY);
     }
 }
