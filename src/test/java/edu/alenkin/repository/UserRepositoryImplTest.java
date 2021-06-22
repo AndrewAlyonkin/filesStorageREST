@@ -65,6 +65,4 @@ public class UserRepositoryImplTest extends RepositoryTest {
         repo.create(clone);
         assertThat(repo.get(chuck_id)).usingRecursiveComparison().ignoringFields("events", "storedFiles").isEqualTo(clone);
     }
-
-   
 }

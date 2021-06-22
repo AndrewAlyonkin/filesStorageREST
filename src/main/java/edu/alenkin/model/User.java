@@ -28,12 +28,12 @@ public class User extends BaseEntity {
     private String name;
 
     @Expose
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<StoredFile> storedFiles;
 
     @Expose
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Event> events;
 
     public User(String name, Long id) {
