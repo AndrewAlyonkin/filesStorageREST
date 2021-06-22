@@ -120,9 +120,9 @@
           <version>7.10.0</version>
           <configuration>
             <driver>org.postgresql.Driver</driver>
-            <url>jdbc:postgresql://localhost:5432/filesStorage?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8</url>
-            <user>postgres</user>
-            <password>postgres</password>
+            <url>jdbc:postgresql://ec2-52-19-96-181.eu-west-1.compute.amazonaws.com:5432/d3m8iuqkpg955r</url>
+            <user>cbziseugutqnln</user>
+            <password>b64c6d10120da47234cf609f250956ce863156ccb9afdf8da4b9cd20b33be492</password>
           </configuration>
         </plugin>
 

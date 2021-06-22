@@ -6,9 +6,9 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/filesStorage</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">postgres</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-52-19-96-181.eu-west-1.compute.amazonaws.com:5432/d3m8iuqkpg955r</property>
+        <property name="hibernate.connection.username">cbziseugutqnln</property>
+        <property name="hibernate.connection.password">b64c6d10120da47234cf609f250956ce863156ccb9afdf8da4b9cd20b33be492</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="show_sql">true</property>
 
